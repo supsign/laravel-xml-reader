@@ -1,6 +1,6 @@
 <?php
 
-namespace Supsign\LaravelCsvReader;
+namespace Supsign\LaravelXmlReader;
 
 use Supsign\LaravelXmlReader\DirectoryReader;
 
