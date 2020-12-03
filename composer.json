@@ -1,0 +1,26 @@
+{
+    "name": "supsign/laravel-xml-reader",
+    "description": "Laravel Extension for handling Xml files",
+    "keywords": ["composer", "script", "myFactory"],
+    "license": "MIT",
+    "authors": [
+    {
+        "name": "Florian Ratz",
+        "email": "florian.ratz@supsign.ch"
+    }],
+    "autoload": {
+        "psr-4": {
+            "Supsign\\LaravelXmlReader\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Supsign\\LaravelXmlReader\\LaravelXmlReaderServiceProvider"
+            ],
+            "aliases": {
+                "XmlReader": "Supsign\\LaravelXmlReader\\XmlReader"
+            }
+        }
+    }
+}
