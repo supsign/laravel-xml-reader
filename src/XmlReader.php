@@ -38,6 +38,13 @@ class XmlReader {
 		return XML::import(Storage::path($this->sourceFolder.'/'.$this->sourceFile))->collect();
 	}
 
+	public function setDataKey($key) 
+	{
+		$this->dataKey = $key;
+
+		return $this;
+	}
+
 	public function setSourceFile($fileName) 
 	{
 		$this->sourceFile = $fileName;
