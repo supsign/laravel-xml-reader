@@ -3,6 +3,7 @@
 namespace Supsign\LaravelXmlReader;
 
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
 use XML;
 
@@ -31,11 +32,21 @@ class XmlReader {
 
 	protected function readFile()
 	{
-		if (!$this->sourceFile OR $this->getFileType() !== 'xml') {
-			throw new BadRequestException('file not found');
+		if (!$this->sourceFile) {
+			throw new BadRequestException('no source file set');
 		}
 
-		return XML::import(Storage::path($this->sourceFolder.'/'.$this->sourceFile))->collect();
+		if ($this->getFileType() !== 'xml') {
+			throw new BadRequestException('invalid file format');
+		}
+
+		$path = $this->sourceFolder.'/'.$this->sourceFile;
+
+		if (!Storage::exists($path)) {
+			throw new FileNotFoundException;
+		}
+
+		return XML::import(Storage::path($path))->collect();
 	}
 
 	public function setDataKey($key) 
