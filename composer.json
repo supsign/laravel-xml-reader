@@ -9,7 +9,7 @@
         "email": "florian.ratz@supsign.ch"
     }],
     "require": {
-        "acfbentveld/xml": "^4.0"
+        "flowgistics/laravel-xml": "^1.1.0"
     },
     "autoload": {
         "psr-4": {

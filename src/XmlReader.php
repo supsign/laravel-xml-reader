@@ -48,7 +48,7 @@ class XmlReader {
 			throw new FileNotFoundException;
 		}
 
-		return XML::import(Storage::path($path))->collect();
+		return XML::import(Storage::path($path));
 	}
 
 	public function setDataKey(string $key): self 
