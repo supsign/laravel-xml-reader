@@ -40,7 +40,9 @@ class XmlReader {
 			throw new BadRequestException('invalid file format');
 		}
 
-		$path = $this->sourceFolder.'/'.$this->sourceFile;
+		$path = $this->sourceFolder 
+			? $this->sourceFolder.'/'.$this->sourceFile
+			: $this->sourceFile;
 
 		if (!Storage::exists($path)) {
 			throw new FileNotFoundException;
@@ -49,28 +51,28 @@ class XmlReader {
 		return XML::import(Storage::path($path))->collect();
 	}
 
-	public function setDataKey($key) 
+	public function setDataKey(string $key): self 
 	{
 		$this->dataKey = $key;
 
 		return $this;
 	}
 
-	public function setSourceFile($fileName) 
+	public function setSourceFile(string $fileName): self
 	{
 		$this->sourceFile = $fileName;
 
 		return $this;
 	}
 
-	public function setSourceFolder($folderName) 
+	public function setSourceFolder(string $folderName): self
 	{
 		$this->sourceFolder = $folderName;
 
 		return $this;
 	}
 
-	protected function getFileType()
+	protected function getFileType(): string
 	{
 		return strtolower(substr($this->sourceFile, strrpos($this->sourceFile, '.') + 1));
 	}
